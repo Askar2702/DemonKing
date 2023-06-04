@@ -6,15 +6,12 @@ public class SpawnPlayer : MonoBehaviour
 {
     private Camera _camera;
     [SerializeField] private MovePlayer _movePlayer;
-
+    private Vector3 _downPos;
     private void Awake()
     {
         _camera = Camera.main;
     }
-    void Start()
-    {
-        
-    }
+   
 
     // Update is called once per frame
     void Update()
@@ -25,7 +22,18 @@ public class SpawnPlayer : MonoBehaviour
             Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
             if(Physics.Raycast(ray, out hit))
             {
-                Instantiate(_movePlayer, hit.point, Quaternion.identity);
+                _downPos = hit.point;
+            }
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            RaycastHit hit;
+            Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
+            if(Physics.Raycast(ray, out hit))
+            {
+                if (_downPos == hit.point)
+                    Instantiate(_movePlayer, hit.point, Quaternion.identity);
             }
         }
     }

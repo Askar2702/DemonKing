@@ -12,7 +12,7 @@ public class CameraController : MonoBehaviour
     {
         touchStart = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
-    void Update()
+    void LateUpdate()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -24,11 +24,11 @@ public class CameraController : MonoBehaviour
             isDragging = false;
         }
 
-     //   if (isDragging)
+        //if (isDragging)
         {
             Vector3 direction = touchStart - Camera.main.ScreenToWorldPoint(Input.mousePosition);
             direction.y = 0;
-           transform.position += direction * cameraSpeed * Time.deltaTime;
+           transform.position += direction * Time.deltaTime * cameraSpeed;
 
         }
     }
