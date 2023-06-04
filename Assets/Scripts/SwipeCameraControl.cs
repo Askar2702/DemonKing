@@ -12,11 +12,22 @@ public class SwipeCameraControl : MonoBehaviour
 
     // Initial position of the mouse on the screen
     private Vector3 initialMousePosition;
-
+    private Camera _cam;
     // Update is called once per frame
-    void Update()
+
+    private void Awake()
     {
-        // Check for input on both editor and Android
+        _cam = Camera.main;
+    }
+    void LateUpdate()
+    {
+        ComputerInput();
+    }
+
+   
+
+    private void ComputerInput()
+    {
         if (Input.GetMouseButtonDown(0))
         {
             isCameraMoving = true;
@@ -32,15 +43,28 @@ public class SwipeCameraControl : MonoBehaviour
         {
             // Calculate the distance moved by the mouse
             Vector3 mouseDelta = Input.mousePosition - initialMousePosition;
-
+            if (mouseDelta.magnitude < 5) return;
             // Update the initial mouse position to the current mouse position
             initialMousePosition = Input.mousePosition;
 
-            // Move the camera based on the mouse movement
-            Vector3 newPosition = transform.position;
-            newPosition.x -= mouseDelta.x * cameraSpeed * Time.deltaTime;
-            newPosition.z -= mouseDelta.y * cameraSpeed * Time.deltaTime;
-            transform.position = newPosition;
+            // Get the camera's forward direction
+            Vector3 cameraForward = _cam.transform.forward;
+            cameraForward.y = 0f;
+            cameraForward.Normalize();
+
+            // Get the camera's right direction
+            Vector3 cameraRight = _cam.transform.right;
+            cameraRight.y = 0f;
+            cameraRight.Normalize();
+
+            // Calculate the desired movement direction based on mouse input and camera orientation
+            Vector3 movementDirection = cameraRight * -mouseDelta.x + cameraForward * -mouseDelta.y;
+
+            // Normalize the movement direction to ensure consistent speed
+            movementDirection.Normalize();
+
+            // Move the camera based on the movement direction and camera speed
+            transform.position += movementDirection * cameraSpeed * Time.deltaTime;
         }
     }
 }
