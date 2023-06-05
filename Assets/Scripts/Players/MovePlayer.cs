@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class MovePlayer : MonoBehaviour
 {
     [SerializeField] private NavMeshAgent _meshAgent;
+    [SerializeField] private Player _player;
     private Transform _target;
     private float _distanceTarget = 3;
     void Start()
@@ -17,8 +18,9 @@ public class MovePlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (CheckDistance()) ChangeTarget();
-        _meshAgent.SetDestination(_target.position);
+        if (_target==null || CheckDistance()) ChangeTarget();
+        if (!_player.isAttack)
+            _meshAgent.SetDestination(_target.position);
     }
 
     private bool CheckDistance()
@@ -27,6 +29,12 @@ public class MovePlayer : MonoBehaviour
     }
     private void ChangeTarget()
     {
-        _target = PointManager.instance.Points[Random.Range(0, PointManager.instance.Points.Length - 1)];
+        if (_player.FindClosestEnemy() != null)
+        {
+            _meshAgent.isStopped = false;
+            _target = _player.FindClosestEnemy().transform;
+        }
+        else _meshAgent.isStopped = true;
+        //  _target = PointManager.instance.Points[Random.Range(0, PointManager.instance.Points.Length - 1)];
     }
 }

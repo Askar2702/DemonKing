@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c7073a2f036afa4ebf134f20db3b6e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectPrefab: {fileID: 3612572858071139017, guid: 3f04f364b12f85e42b65b206356e6490,
+  _objectPrefab: {fileID: 140253162199115822, guid: 3f04f364b12f85e42b65b206356e6490,
     type: 3}
   _numberOfObjects: 10
   _planeObject: {fileID: 12202714}
@@ -351,6 +351,7 @@ GameObject:
   m_Component:
   - component: {fileID: 245047122}
   - component: {fileID: 245047121}
+  - component: {fileID: 245047123}
   m_Layer: 0
   m_Name: '[GAMEMANAGER]'
   m_TagString: Untagged
@@ -395,6 +396,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &245047123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245047120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f1f9cf6101f4b040b6252a037d70bc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &246299192
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,7 +556,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 20
+  orthographic size: 12
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -571,7 +584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44746f34cb8f63c4d9aabab2ad0973cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraSpeed: 10
+  cameraSpeed: 5
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1078,7 +1091,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c7073a2f036afa4ebf134f20db3b6e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectPrefab: {fileID: 3612572858071139017, guid: 3f04f364b12f85e42b65b206356e6490,
+  _objectPrefab: {fileID: 140253162199115822, guid: 3f04f364b12f85e42b65b206356e6490,
     type: 3}
   _numberOfObjects: 10
   _planeObject: {fileID: 1154820477}
@@ -1226,7 +1239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c7073a2f036afa4ebf134f20db3b6e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectPrefab: {fileID: 3612572858071139017, guid: 3f04f364b12f85e42b65b206356e6490,
+  _objectPrefab: {fileID: 140253162199115822, guid: 3f04f364b12f85e42b65b206356e6490,
     type: 3}
   _numberOfObjects: 10
   _planeObject: {fileID: 1258008743}
@@ -1451,7 +1464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c7073a2f036afa4ebf134f20db3b6e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectPrefab: {fileID: 3612572858071139017, guid: 3f04f364b12f85e42b65b206356e6490,
+  _objectPrefab: {fileID: 140253162199115822, guid: 3f04f364b12f85e42b65b206356e6490,
     type: 3}
   _numberOfObjects: 10
   _planeObject: {fileID: 1740545888}
@@ -1774,7 +1787,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c7073a2f036afa4ebf134f20db3b6e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectPrefab: {fileID: 3612572858071139017, guid: 3f04f364b12f85e42b65b206356e6490,
+  _objectPrefab: {fileID: 140253162199115822, guid: 3f04f364b12f85e42b65b206356e6490,
     type: 3}
   _numberOfObjects: 10
   _planeObject: {fileID: 2036266102}

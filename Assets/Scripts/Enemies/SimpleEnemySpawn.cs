@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SimpleEnemySpawn : MonoBehaviour
 {
-    [SerializeField] private GameObject _objectPrefab; // Префаб объекта, который нужно создать
+    [SerializeField] private Enemy _objectPrefab; // Префаб объекта, который нужно создать
     [SerializeField] private int _numberOfObjects = 10; // Количество объектов для создания
     [SerializeField] private GameObject _planeObject; // 3D объект Plane, внутри которого будут спавниться объекты
 
@@ -28,7 +28,8 @@ public class SimpleEnemySpawn : MonoBehaviour
         Vector3 spawnPosition = GetRandomPositionWithinBounds();
 
         // Создаем новый объект из префаба и устанавливаем его позицию
-        GameObject newObject = Instantiate(_objectPrefab, spawnPosition, Quaternion.Euler(0, Random.Range(0, 360), 0));
+        var enemy = Instantiate(_objectPrefab, spawnPosition, Quaternion.Euler(0, Random.Range(0, 360), 0));
+        ListEnemy.instance.AddEnemy(enemy);
     }
 
     private Vector3 GetRandomPositionWithinBounds()
