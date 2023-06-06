@@ -21,8 +21,12 @@ public class MovePlayer : MonoBehaviour
         if (_target==null || CheckDistance()) ChangeTarget();
         if (!_player.isAttack)
         {
-            _meshAgent.isStopped = false;
-            _meshAgent.SetDestination(_target.position);
+            if (_target != null)
+            {
+                _meshAgent.isStopped = false;
+                _meshAgent.SetDestination(_target.position);
+            }
+            else _meshAgent.isStopped = true;
         }
         else _meshAgent.isStopped = true;
     }

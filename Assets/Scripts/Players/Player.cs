@@ -28,6 +28,11 @@ public class Player : MonoBehaviour
             else isAttack = false;
         }
         _animator.SetBool("Attack", isAttack);
+        if(FindClosestEnemy() == null && !isAttack)
+        {
+            _animator.SetBool("Move", false);
+        }
+        else _animator.SetBool("Move", true);
     }
     public Enemy FindClosestEnemy()
     {
