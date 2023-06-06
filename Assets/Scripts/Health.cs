@@ -30,4 +30,9 @@ public class Health : MonoBehaviour
         yield return new WaitForSeconds(2f);
         Destroy(gameObject);
     }
+
+    public bool CheckAlive()
+    {
+        return _healthCount > 0;
+    }
 }

@@ -6,8 +6,12 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private Health _health;
     [SerializeField] private Animator _animator;
-    public bool isAttack;
-   
+    [SerializeField] private float _damage;
+    public bool isAttack { get; private set; }
+    private void Start()
+    {
+        ListPlayer.instance.AddPlayer(this);
+    }
     public void TakeDamage(float amount)
     {
         _health.TakeDamage(amount);
@@ -17,7 +21,7 @@ public class Player : MonoBehaviour
     {
         if (FindClosestEnemy() != null)
         {
-            if (Vector3.Distance(transform.position, FindClosestEnemy().transform.position) < 1f)
+            if (Vector3.Distance(transform.position, FindClosestEnemy().transform.position) < 1f && FindClosestEnemy().CheckAlive())
             {
                 isAttack = true;
             }
@@ -42,5 +46,23 @@ public class Player : MonoBehaviour
         }
 
         return closestEnemy;
+    }
+
+    public bool CheckAlive()
+    {
+        return _health.CheckAlive();
+    }
+
+    /// <summary>
+    /// вызывается в анимаций как метод
+    /// </summary>
+    private void Attack()
+    {
+        FindClosestEnemy().TakeDamage(_damage);
+    }
+
+    private void OnDestroy()
+    {
+        ListPlayer.instance.RemovePlayer(this);
     }
 }
