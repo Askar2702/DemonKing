@@ -19,13 +19,17 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (!CheckAlive()) return;
         if (FindClosestEnemy() != null)
         {
             if (Vector3.Distance(transform.position, FindClosestEnemy().transform.position) < 1f && FindClosestEnemy().CheckAlive())
             {
                 isAttack = true;
             }
-            else isAttack = false;
+            else {
+                isAttack = false;
+                _health.ShowHealthBar(false);
+            }
         }
         _animator.SetBool("Attack", isAttack);
         if(FindClosestEnemy() == null && !isAttack)

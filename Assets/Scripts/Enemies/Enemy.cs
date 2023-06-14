@@ -7,6 +7,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Health _health;
     [SerializeField] private Animator _animator;
     [SerializeField] private float _damage;
+   
+    [field:SerializeField] public SkinnedMeshRenderer SkinnedMeshRenderer { get; private set; }
     public bool isAttack { get; private set; }
 
     public void TakeDamage(float amount)
@@ -15,20 +17,26 @@ public class Enemy : MonoBehaviour
     }
     private void Update()
     {
+        if (!CheckAlive())
+        {
+            ListEnemy.instance.RemoveEnemy(this);
+            return;
+        }
         if (FindClosestEnemy() != null)
         {
-            if (Vector3.Distance(transform.position, FindClosestEnemy().transform.position) < 1f && FindClosestEnemy().CheckAlive())
+            var target = FindClosestEnemy();
+            if (Vector3.Distance(transform.position,target.transform.position) < 1f && target.CheckAlive())
             {
                 isAttack = true;
             }
-            else isAttack = false;
+            else {
+                isAttack = false;
+                _health.ShowHealthBar(false);
+            }
         }
         _animator.SetBool("Attack", isAttack);
     }
-    private void OnDestroy()
-    {
-        ListEnemy.instance.RemoveEnemy(this);
-    }
+   
 
     public bool CheckAlive()
     {

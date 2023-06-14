@@ -15,9 +15,11 @@ public class Health : MonoBehaviour
     }
     public void TakeDamage(float amount)
     {
+        ShowHealthBar(true);
         _healthCount -= amount;
         if (_healthCount <= 0)
         {
+            ShowHealthBar(false);
             _healthCount = 0;
             _animator.SetTrigger("Death");
             StartCoroutine(DelayDeath());
@@ -25,9 +27,14 @@ public class Health : MonoBehaviour
         _slider.value = _healthCount;
     }
 
+    public void ShowHealthBar(bool a)
+    {
+        if (a == _slider.gameObject.activeSelf) return;
+        _slider.gameObject.SetActive(a);
+    }
     IEnumerator DelayDeath()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(4f);
         Destroy(gameObject);
     }
 

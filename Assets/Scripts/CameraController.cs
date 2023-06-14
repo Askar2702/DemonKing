@@ -26,7 +26,7 @@ public class CameraController : MonoBehaviour
             isDragging = false;
         }
 
-      //  if (isDragging)
+        if (isDragging)
         {
             Vector3 direction = touchStart - GetWorldPosition(Input.mousePosition);
             direction.y = 0;

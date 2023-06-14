@@ -23,4 +23,7 @@ public class ListEnemy : MonoBehaviour
         if (Enemies.Contains(enemy)) Enemies.Remove(enemy);
         if (Enemies.Count <= 0) GameManager.instance.Finish();
     }
+  
 }
+
+

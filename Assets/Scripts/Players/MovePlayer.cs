@@ -18,6 +18,11 @@ public class MovePlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!_player.CheckAlive())
+        {
+            _meshAgent.enabled = false;
+            return;
+        }
         if (_target==null || CheckDistance()) ChangeTarget();
         if (!_player.isAttack)
         {
