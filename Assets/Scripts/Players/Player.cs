@@ -59,6 +59,7 @@ public class Player : MonoBehaviour
 
     public bool CheckAlive()
     {
+        if (!_health.CheckAlive()) ListPlayer.instance.RemovePlayer(this);
         return _health.CheckAlive();
     }
 
@@ -70,8 +71,5 @@ public class Player : MonoBehaviour
         FindClosestEnemy().TakeDamage(_damage);
     }
 
-    private void OnDestroy()
-    {
-        ListPlayer.instance.RemovePlayer(this);
-    }
+   
 }

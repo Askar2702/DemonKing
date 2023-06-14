@@ -17,11 +17,8 @@ public class Enemy : MonoBehaviour
     }
     private void Update()
     {
-        if (!CheckAlive())
-        {
-            ListEnemy.instance.RemoveEnemy(this);
-            return;
-        }
+        if (!CheckAlive()) return;
+        
         if (FindClosestEnemy() != null)
         {
             var target = FindClosestEnemy();
@@ -40,6 +37,8 @@ public class Enemy : MonoBehaviour
 
     public bool CheckAlive()
     {
+        if (!_health.CheckAlive())
+            ListEnemy.instance.RemoveEnemy(this);
         return _health.CheckAlive();
     }
 
