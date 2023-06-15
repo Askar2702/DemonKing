@@ -12,6 +12,7 @@ public class Energy : MonoBehaviour
     private float _powerGenerationRate = 1.5f;
     [SerializeField] private Slider _slider;
     [SerializeField] private TextMeshProUGUI _textAmount;
+    [SerializeField] private Warning _warning;
     private void Awake()
     {
         if (!instance) instance = this;
@@ -41,7 +42,11 @@ public class Energy : MonoBehaviour
             _slider.value = CurrentCountEnergy;
             return true;
         }
-        else return false;
+        else
+        {
+            _warning.Init();
+            return false;
+        }
     }
 
     private void ShowAmountEnergy(float value)
