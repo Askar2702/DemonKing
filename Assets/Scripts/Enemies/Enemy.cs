@@ -31,6 +31,11 @@ public class Enemy : MonoBehaviour
                 _health.ShowHealthBar(false);
             }
         }
+        else
+        {
+            isAttack = false;
+            _health.ShowHealthBar(false);
+        }
         _animator.SetBool("Attack", isAttack);
     }
    

@@ -7,6 +7,7 @@ public class SpawnPlayer : MonoBehaviour
     private Camera _camera;
     [SerializeField] private MovePlayer _movePlayer;
     private Vector3 _downPos;
+    [SerializeField] private float _priceUnit;
     private void Awake()
     {
         _camera = Camera.main;
@@ -32,8 +33,10 @@ public class SpawnPlayer : MonoBehaviour
             Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
             if(Physics.Raycast(ray, out hit))
             {
-                if (_downPos == hit.point)
-                    Instantiate(_movePlayer, hit.point, Quaternion.identity);
+                if (_downPos == hit.point && Energy.instance.BuyUnit(_priceUnit)) 
+                { 
+                    Instantiate(_movePlayer, hit.point, Quaternion.identity); 
+                }
             }
         }
     }
