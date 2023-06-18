@@ -25,18 +25,22 @@ public class Player : MonoBehaviour
             if (Vector3.Distance(transform.position, FindClosestEnemy().transform.position) < 1f && FindClosestEnemy().CheckAlive())
             {
                 isAttack = true;
+                _animator.SetBool("Move", false);
             }
             else {
                 isAttack = false;
+                _animator.SetBool("Move", true);
                 _health.ShowHealthBar(false);
             }
         }
-        _animator.SetBool("Attack", isAttack);
-        if(FindClosestEnemy() == null && !isAttack)
+        if(FindClosestEnemy() == null)
         {
+            isAttack = false;
             _animator.SetBool("Move", false);
+            _health.ShowHealthBar(false);
         }
-        else _animator.SetBool("Move", true);
+       
+        _animator.SetBool("Attack", isAttack);
     }
     public Enemy FindClosestEnemy()
     {
@@ -68,7 +72,9 @@ public class Player : MonoBehaviour
     /// </summary>
     private void Attack()
     {
-        FindClosestEnemy().TakeDamage(_damage);
+        if (FindClosestEnemy())
+            FindClosestEnemy().TakeDamage(_damage);
+        else isAttack = false;
     }
 
    

@@ -8,8 +8,8 @@ public class Energy : MonoBehaviour
 {
     public static Energy instance { get; private set; }
     public float CurrentCountEnergy { get; private set; }
-    private float _maxCountEnergy = 20f;
-    private float _powerGenerationRate = 1.5f;
+    [SerializeField] private float _maxCountEnergy = 20f;
+    [SerializeField] private float _powerGenerationRate = 1.5f;
     [SerializeField] private Slider _slider;
     [SerializeField] private TextMeshProUGUI _textAmount;
     [SerializeField] private Warning _warning;
