@@ -7,6 +7,7 @@ public class ListEnemy : MonoBehaviour
     public static ListEnemy instance { get; private set; }
     public List<Enemy> Enemies { get; private set; } = new List<Enemy>();
     public int Count => Enemies.Count;
+    public int SpawnCount { get; private set; }
 
     private void Awake()
     {
@@ -15,7 +16,11 @@ public class ListEnemy : MonoBehaviour
 
     public void AddEnemy(Enemy enemy)
     {
-        if (!Enemies.Contains(enemy)) Enemies.Add(enemy);
+        if (!Enemies.Contains(enemy))
+        {
+            Enemies.Add(enemy);
+            SpawnCount++;
+        }
     }
 
     public void RemoveEnemy(Enemy enemy)

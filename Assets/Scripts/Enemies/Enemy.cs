@@ -71,6 +71,8 @@ public class Enemy : MonoBehaviour
     /// </summary>
     private void Attack()
     {
-        FindClosestEnemy().TakeDamage(_damage);
+        if (FindClosestEnemy())
+            FindClosestEnemy().TakeDamage(_damage);
+        else isAttack = false;
     }
 }

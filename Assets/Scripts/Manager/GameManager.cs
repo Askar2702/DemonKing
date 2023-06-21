@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance { get; private set; }
-    [SerializeField] private GameObject _panelfinish;
+    public UnityEvent SendFinishSignal = new UnityEvent();
     public bool isfinish;
     private void Awake()
     {
@@ -15,7 +16,7 @@ public class GameManager : MonoBehaviour
     public void Finish()
     {
         isfinish = true;
-        _panelfinish.SetActive(true);
+        SendFinishSignal?.Invoke();
     }
 
     public void RestartGame()
