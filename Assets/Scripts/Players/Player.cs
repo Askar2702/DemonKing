@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private Health _health;
     [SerializeField] private Animator _animator;
-    [SerializeField] private float _damage;
+    [SerializeField] private float _damage; 
     public bool isAttack { get; private set; }
     private void Start()
     {
@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
         if (!CheckAlive()) return;
         if (FindClosestEnemy() != null)
         {
-            if (Vector3.Distance(transform.position, FindClosestEnemy().transform.position) < 1f && FindClosestEnemy().CheckAlive())
+            if (Vector3.Distance(transform.position, FindClosestEnemy().transform.position) < 1.5f && FindClosestEnemy().CheckAlive())
             {
                 isAttack = true;
                 _animator.SetBool("Move", false);
@@ -39,8 +39,9 @@ public class Player : MonoBehaviour
             _animator.SetBool("Move", false);
             _health.ShowHealthBar(false);
         }
-       
-        _animator.SetBool("Attack", isAttack);
+
+        if (isAttack != _animator.GetBool("Attack"))
+            _animator.SetBool("Attack", isAttack);
     }
     public Enemy FindClosestEnemy()
     {

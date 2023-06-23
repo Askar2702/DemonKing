@@ -9,7 +9,6 @@ public class EnemyMove : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private Enemy _enemy;
     private float _distanceTarget = 3f;
-    private float _rotationSpeed = 10f;
     void Start()
     {
         _meshAgent = GetComponent<NavMeshAgent>();
@@ -31,27 +30,21 @@ public class EnemyMove : MonoBehaviour
             _meshAgent.isStopped = true;
             return;
         }
-        if (target != null && CheckDistance() && target.CheckAlive())
+        if (target != null && CheckDistance(_distanceTarget) && target.CheckAlive())
         {
-            Vector3 targetDirection = target.transform.position - transform.position;
-            Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
-
             _meshAgent.isStopped = false;
             _animator.SetBool("Move", true);
             _meshAgent.SetDestination(target.transform.position);
         }
-        else if(target == null || target != null && target.CheckAlive())
+        else if(target == null)
         {
-            {
-                _animator.SetBool("Move", false);
-            }
+            _animator.SetBool("Move", false);
         }
     }
 
-    private bool CheckDistance()
+    private bool CheckDistance(float dist)
     {
-        return Vector3.Distance(_enemy.FindClosestEnemy().transform.position, transform.position) < _distanceTarget;
+        return Vector3.Distance(_enemy.FindClosestEnemy().transform.position, transform.position) < dist;
     }
    
 }

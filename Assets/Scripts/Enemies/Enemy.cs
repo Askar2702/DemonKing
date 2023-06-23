@@ -7,7 +7,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Health _health;
     [SerializeField] private Animator _animator;
     [SerializeField] private float _damage;
-   
+
+    private float _rotationSpeed = 10f;
+
     [field:SerializeField] public SkinnedMeshRenderer SkinnedMeshRenderer { get; private set; }
     public bool isAttack { get; private set; }
 
@@ -22,9 +24,12 @@ public class Enemy : MonoBehaviour
         if (FindClosestEnemy() != null)
         {
             var target = FindClosestEnemy();
-            if (Vector3.Distance(transform.position,target.transform.position) < 1f && target.CheckAlive())
+            if (Vector3.Distance(transform.position,target.transform.position) < 1.5f && target.CheckAlive())
             {
                 isAttack = true;
+                Vector3 targetDirection = target.transform.position - transform.position;
+                Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+                transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
             }
             else {
                 isAttack = false;
@@ -36,7 +41,9 @@ public class Enemy : MonoBehaviour
             isAttack = false;
             _health.ShowHealthBar(false);
         }
-        _animator.SetBool("Attack", isAttack);
+
+        if (isAttack != _animator.GetBool("Attack"))
+            _animator.SetBool("Attack", isAttack);
     }
    
 

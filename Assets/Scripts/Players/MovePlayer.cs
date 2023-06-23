@@ -7,6 +7,7 @@ public class MovePlayer : MonoBehaviour
 {
     [SerializeField] private NavMeshAgent _meshAgent;
     [SerializeField] private Player _player;
+    private float _rotationSpeed = 10;
     private Transform _target;
     private float _distanceTarget = 3;
     void Start()
@@ -33,7 +34,13 @@ public class MovePlayer : MonoBehaviour
             }
             else _meshAgent.isStopped = true;
         }
-        else _meshAgent.isStopped = true;
+        else
+        {
+            Vector3 targetDirection = _player.FindClosestEnemy().transform.position - transform.position;
+            Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
+            _meshAgent.isStopped = true;
+        }
     }
 
     private bool CheckDistance()
