@@ -552,9 +552,9 @@ GameObject:
   - component: {fileID: 3612572858071113449}
   - component: {fileID: 3612572858063859977}
   - component: {fileID: 3964588030947596476}
+  - component: {fileID: 2852947181674628637}
   - component: {fileID: 1665459213787324289}
   - component: {fileID: 6349316126763595651}
-  - component: {fileID: 140253162199115822}
   m_Layer: 0
   m_Name: knight
   m_TagString: Untagged
@@ -622,6 +622,22 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &2852947181674628637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3612572858071139017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 746a54085e736f744a54f02a0c0e3a53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: {fileID: 6349316126763595651}
+  _animator: {fileID: 3612572858063859977}
+  _damage: 25
+  <SkinnedMeshRenderer>k__BackingField: {fileID: 3612572858068027401}
 --- !u!114 &1665459213787324289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -636,7 +652,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _meshAgent: {fileID: 3964588030947596476}
   _animator: {fileID: 3612572858063859977}
-  _enemy: {fileID: 140253162199115822}
+  _enemy: {fileID: 2852947181674628637}
 --- !u!114 &6349316126763595651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -652,22 +668,6 @@ MonoBehaviour:
   _slider: {fileID: 1105736887507563169}
   _healthCount: 100
   _animator: {fileID: 3612572858063859977}
---- !u!114 &140253162199115822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3612572858071139017}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2ec840c0be5b4349bbe82014ad02942, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _health: {fileID: 6349316126763595651}
-  _animator: {fileID: 3612572858063859977}
-  _damage: 25
-  <SkinnedMeshRenderer>k__BackingField: {fileID: 3612572858068027401}
 --- !u!1 &3612572858071139169
 GameObject:
   m_ObjectHideFlags: 0
