@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: waterfallMat
+  m_Name: Lava
   m_Shader: {fileID: -6465566751694194690, guid: 8339314e1447aef4ab51beaabc8ea487,
     type: 3}
   m_ValidKeywords: []
@@ -53,9 +53,9 @@ Material:
     - _QueueOffset: 0
     - _RipplesAmount: 5
     - _VertexOffsetAmount: 0
-    - _VoronoiScale: 5
+    - _VoronoiScale: 15
     - _VoronoiSpeed: 1
     m_Colors:
-    - _RipplesColor: {r: 7.849847, g: 0.5312838, b: 0, a: 1}
-    - _RipplesSpeed: {r: 0, g: 0.5, b: 0, a: 0}
+    - _RipplesColor: {r: 5.992157, g: 0.40784314, b: 0, a: 1}
+    - _RipplesSpeed: {r: -0.1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
