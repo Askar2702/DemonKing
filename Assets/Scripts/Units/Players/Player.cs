@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : BaseUnit
 {
-  
+    public bool isReady { get; protected set; }
     protected void Start()
     {
         ListPlayer.instance.AddPlayer(this);
@@ -55,6 +55,14 @@ public class Player : BaseUnit
         }
 
         return closestEnemy;
+    }
+
+    /// <summary>
+    /// вызывается в аниматоре после того как скелет поднимется с земли
+    /// </summary>
+    protected void BeReady()
+    {
+        isReady = true;
     }
 
     public bool CheckAlive()

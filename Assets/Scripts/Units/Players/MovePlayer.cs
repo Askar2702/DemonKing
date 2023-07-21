@@ -19,12 +19,13 @@ public class MovePlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!_player.isReady) return;
         if (!_player.CheckAlive())
         {
             _meshAgent.enabled = false;
             return;
         }
-        if (_target==null || CheckDistance()) ChangeTarget();
+        if (_target == null || CheckDistance()) ChangeTarget();
         if (!_player.isAttack)
         {
             if (_target != null)
@@ -57,4 +58,8 @@ public class MovePlayer : MonoBehaviour
         else _meshAgent.isStopped = true;
         //  _target = PointManager.instance.Points[Random.Range(0, PointManager.instance.Points.Length - 1)];
     }
+
+
+   
+  
 }

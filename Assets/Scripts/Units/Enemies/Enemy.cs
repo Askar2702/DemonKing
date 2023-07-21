@@ -7,7 +7,6 @@ public class Enemy : BaseUnit
 
     private float _rotationSpeed = 10f;
 
-    [field:SerializeField] public SkinnedMeshRenderer SkinnedMeshRenderer { get; private set; }
 
    
     private void Update()
