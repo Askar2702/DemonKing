@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : BaseUnit
 {
-
+    [SerializeField] protected LayerMask _layerMaskWall;
     private float _rotationSpeed = 10f;
 
 
@@ -58,6 +58,23 @@ public class Enemy : BaseUnit
             {
                 closestDistance = distanceToEnemy;
                 closestEnemy = enemy;
+            }
+        }
+        if(closestEnemy)
+        {
+            Vector3 direction = closestEnemy.transform.position - transform.position;
+
+            // Отправляем луч в сторону цели и записываем информацию о столкновении
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, direction, out hit , Vector3.Distance(transform.position , closestEnemy.transform.position) ))
+            {
+                if (hit.collider.gameObject.layer == 7)
+                    closestEnemy = null;
+                else if (hit.collider.gameObject.layer == 8)
+                    closestEnemy = closestEnemy;
+                // Если луч столкнулся с чем-то, рисуем красный луч до места столкновения
+
+                Debug.DrawRay(transform.position, direction.normalized * hit.distance, Color.blue);
             }
         }
 

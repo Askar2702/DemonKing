@@ -8,6 +8,7 @@ public class SpawnPlayer : MonoBehaviour
     [SerializeField] private MovePlayer _movePlayer;
     private Vector3 _downPos;
     [SerializeField] private float _priceUnit;
+    [SerializeField] private LayerMask _layerMask;
     private void Awake()
     {
         _camera = Camera.main;
@@ -31,7 +32,7 @@ public class SpawnPlayer : MonoBehaviour
         {
             RaycastHit hit;
             Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
-            if(Physics.Raycast(ray, out hit))
+            if(Physics.Raycast(ray, out hit , _layerMask))
             {
                 if (_downPos == hit.point && Energy.instance.BuyUnit(_priceUnit)) 
                 {

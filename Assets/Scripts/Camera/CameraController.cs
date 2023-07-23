@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private float _cameraSpeed = 2.0f;
-    [SerializeField] private float _minZ;
-    [SerializeField] private float _maxZ;
-    [SerializeField] private float _minX;
-    [SerializeField] private float _maxX;
+    [SerializeField] private float _cameraSpeed = 25f;
+    [Space(50)]
+    [SerializeField] private float _minZ = -30f;
+    [SerializeField] private float _maxZ = 10f;
+    [SerializeField] private float _minX = -30f;
+    [SerializeField] private float _maxX = 15f;
 
     private Vector3 touchStart;
     private bool isDragging = false;

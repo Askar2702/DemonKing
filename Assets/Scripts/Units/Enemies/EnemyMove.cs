@@ -8,7 +8,7 @@ public class EnemyMove : MonoBehaviour
     [SerializeField] private NavMeshAgent _meshAgent;
     [SerializeField] private Animator _animator;
     [SerializeField] private Enemy _enemy;
-    private float _distanceTarget = 3f;
+    private float _distanceTarget = 5f;
     void Start()
     {
         _meshAgent = GetComponent<NavMeshAgent>();
